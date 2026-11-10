@@ -5,8 +5,34 @@
     <meta charset="UTF-8" />
   </head>
   <body>
+    <div style="text-align: center; margin-top: 50px;">
+        <h2>HTML GUI Controller</h2>
+        <input type="text" id="keyInput" placeholder="W">
+        <button id="execBtn">W</button>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script>
+      const keyInput = document.getElementById("keyInput");
+      const execBtn = document.getElementById("execBtn");
+
+// Listen for a key press inside the input field
+      keyInput.addEventListener("keydown", function(event) {
+        if (event.key === "W") {
+        event.preventDefault(); // Cancel default form submit
+        console.log("W key pressed!");
+        executeAction();
+        }
+      });
+
+// Listen for button click
+      execBtn.addEventListener("click", function() {
+         executeAction();
+      });
+
+      function executeAction() {
+         alert("Key/Action executed from HTML GUI!");
+    // Put your logic here
+      }
       var socket = io.connect('http://localhost'); // Connect to the server running socket. In this case, localhost
       socket.on('news', function (data) {
         
